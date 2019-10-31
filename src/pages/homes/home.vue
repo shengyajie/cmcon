@@ -1,37 +1,7 @@
 <template>
   <div class="wrapper">
-    <header class="main-header">
-
-      <!-- Logo -->
-      <a href="index2.html" class="logo">
-        <span class="logo-lg"><b>中移在线</b></span>
-      </a>
-
-      <!-- Header Navbar -->
-      <nav class="navbar navbar-static-top" role="navigation">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
-        </a>
-        <!-- Navbar Right Menu -->
-
-      </nav>
-    </header>
-    <aside class="main-sidebar">
-      <section class="sidebar">
-        <ul class="sidebar-menu" data-widget="tree" id="sidebar">
-          <li class="active"><a href="#"><span>整体分析</span></a></li>
-          <li><a href="#"> <span>自营</span></a></li>
-          <li><a href="#"><span>鸿联</span></a></li>
-          <li><a href="#"><span>本地科慧</span></a></li>
-          <li><a href="#"><span>肇庆科慧</span></a></li>
-          <li><a href="#"><span>博岳</span></a></li>
-          <li><a href="#"><span>点动</span></a></li>
-        </ul>
-        <!-- /.sidebar-menu -->
-      </section>
-      <!-- /.sidebar -->
-    </aside>
+    <HomeHeader/>
+    <HomeAside/>
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
@@ -185,8 +155,27 @@
       </section>
       <!-- /.content -->
     </div>
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2019 <a href="#">Company</a>.</strong> All rights reserved.
-    </footer>
+    <HomeFoot/>
   </div>
 </template>
+<script>
+  import HomeHeader from '@/common/header/Header.vue'
+  import HomeAside from '@/common/aside/aside'
+  import HomeFoot from '@/common/foot/Foot'
+  export default {
+    name: 'home',
+    components: {
+      'HomeHeader':HomeHeader,
+      'HomeAside':HomeAside,
+      'HomeFoot':HomeFoot,
+    },
+    data() {
+      return {
+
+      }
+    }
+  }
+</script>
+<style>
+
+</style>
