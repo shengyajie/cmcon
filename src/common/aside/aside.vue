@@ -15,3 +15,23 @@
   <!-- /.sidebar -->
 </aside>
 </template>
+<script>
+  $(function () {
+    $("#sidebar li").click(function () {
+      $(this).siblings("li").removeClass("active");//删除其他兄弟元素的样式
+      $(this).addClass("active");//添加当前元素的样式
+    })
+    $("li").click(function(){
+      var type=paraseInt($(this).val());//获取当前点击的li标签当前的value值
+      $.ajax({
+        url:"",
+        type:"post",
+        data:{type:type},
+        dataType:"json",
+        success:function (resp) {
+          alert(resp.data);
+        }
+      });
+    })
+  })
+</script>
