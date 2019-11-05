@@ -13,8 +13,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 
-11月4日：
-表格数据的更新
+11月5日：
+实现表格数据删除
+编辑功能：实现编辑框的弹出，input的设置
+11月6日：争取实现数据的动态编辑
 
 
 
