@@ -10,6 +10,17 @@
       </section>
       <section class="content">
         <template>
+
+          <el-row>
+             <el-col span="8" class="table-grid-content">
+              <el-button
+                type="primary"
+                @click="addRow()"
+              >新增
+             </el-button>
+             </el-col>
+          </el-row>
+
           <el-table
             :data="tableData"
             stripe
@@ -64,7 +75,6 @@
               </template>
             </el-table-column>
           </el-table>
-
         </template>
       </section>
 
@@ -83,7 +93,7 @@
             label="日期"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.data"
+              v-model="editForm.editdate"
               placeholder="请输入日期"
               autocomplete="off"
             ></el-input>
@@ -92,26 +102,17 @@
             label="姓名"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.name"
+              v-model="editForm.editname"
               autocomplete="off"
               placeholder="请输入姓名"
               maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="年龄"
-            :label-width="formLabelWidth">
-            <el-input
-              v-model="editForm.age"
-              autocomplete="off"
-              placeholder="请输入年龄"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
             label="省份"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.province"
+              v-model="editForm.editprovince"
               autocomplete="off"
               placeholder="请输入省份"
             ></el-input>
@@ -120,7 +121,7 @@
             label="市区"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.city"
+              v-model="editForm.editcity"
               autocomplete="off"
               placeholder="请输入市区"
             ></el-input>
@@ -129,7 +130,7 @@
             label="地址"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.address"
+              v-model="editForm.editaddress"
               autocomplete="off"
               placeholder="请输入地址"
             ></el-input>
@@ -138,7 +139,7 @@
             label="邮编"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.postalCode"
+              v-model="editForm.editzip"
               autocomplete="off"
               placeholder="请输入邮编"
               maxlength="6"
@@ -157,6 +158,82 @@
       </el-dialog>
 
 
+      <!-- 新增窗口 -->
+      <el-dialog
+        title="新增"
+        :visible.sync="addFormVisible"
+      >
+        <el-form
+          :model="addForm"
+          ref="addForm"
+        >
+          <el-form-item
+            label="日期"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.adddate"
+              placeholder="请输入日期"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="姓名"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.addname"
+              autocomplete="off"
+              placeholder="请输入姓名"
+              maxlength="8"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="省份"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.addprovince"
+              autocomplete="off"
+              placeholder="请输入省份"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="市区"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.addcity"
+              autocomplete="off"
+              placeholder="请输入市区"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="地址"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.addaddress"
+              autocomplete="off"
+              placeholder="请输入地址"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="邮编"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.addzip"
+              autocomplete="off"
+              placeholder="请输入邮编"
+              maxlength="6"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+        <div>
+          <el-button @click="cancel()">取消</el-button>
+          <el-button
+            type="primary"
+            @click="sumbitAddRow()"
+            :loading="addLoading"
+          >确定</el-button>
+        </div>
+
+      </el-dialog>
 
     </div>
     <HomeFoot/>
@@ -166,6 +243,7 @@
   import HomeHeader from '@/common/header/Header.vue'
   import HomeAside from '@/common/aside/aside'
   import HomeFoot from '@/common/foot/Foot'
+  var _index ;//定义一个全局变量，以获取行数据的行号
   export default {
     name: 'home',
     components: {
@@ -175,13 +253,13 @@
     },
     data() {
       return {
-          // visible: false,
         checked: true,
-        tableform: [],
         formLabelWidth: '120px',
         editFormVisible: false,//是否显示编辑窗口
+        addLoading: false,
         editForm: [],
-        radio: 1,
+        addFormVisible: false,//是否显示新增窗口
+        addForm: [],
         tableData: [{
           date: '2016-05-04',
           name: '王小虎',
@@ -211,19 +289,47 @@
         this.editFormVisible = true;
         this.editForm = Object.assign({}, row);
         _index = index;
-        // console.log(index)
-        // console.log(_index)
-        //取到这一栏的值，也就是明白是在那一栏进行操作，从而将编辑后的数据存到表格中
       },
       //保存编辑
       sumbitEditRow() {
         var editData = _index;
-        this.tableform[editData].name = this.editForm.name;
-        this.tableform[editData].age = this.editForm.age;
-        this.tableform[editData].radio = this.editForm.radio;
-        this.tableform[editData].data = this.editForm.data;
-        this.tableform[editData].address = this.editForm.address;
+        this.tableData[editData].date = this.editForm.editdate;
+        this.tableData[editData].name = this.editForm.editname;
+        this.tableData[editData].province = this.editForm.editprovince;
+        this.tableData[editData].city = this.editForm.editcity;
+        this.tableData[editData].address = this.editForm.editaddress;
+        this.tableData[editData].zip = this.editForm.editzip;
         this.editFormVisible = false;
+      },
+    cancel() {
+      this.addFormVisible = false;
+      this.editFormVisible = false;
+    },
+      //新增数据
+      addRow() {
+        this.addFormVisible = true;
+        this.addForm = {
+          adddate: '',
+          addname: '',
+          addprovince: '',
+          addcity: '',
+          addaddress:'',
+          addzip:''
+        }
+      },
+      //将新增的数据添加到表格中
+      sumbitAddRow() {
+        this.tableData = this.tableData || []
+        this.tableData.push({
+          date:this.addForm.adddate,
+          name:this.addForm.addname,
+          province:this.addForm.addprovince,
+          city:this.addForm.addcity,
+          address:this.addForm.addaddress,
+          zip:this.addForm.addzip
+
+        })
+        this.addFormVisible = false
       },
       handleDelete(index, row) {
         this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
@@ -239,14 +345,19 @@
         }).catch((err) => {
           this.$message({
             type: 'error',
-            message: err
+            message: "取消成功！"
           })
         })
-      },
+      }
     }
   }
 
 </script>
 <style>
-
+  .table-grid-content {
+    border-radius: 4px;
+    background: #ebeef5;
+    padding: 10px;
+    float:right;
+  }
 </style>
