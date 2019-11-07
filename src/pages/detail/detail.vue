@@ -10,16 +10,14 @@
       </section>
       <section class="content">
         <template>
-
-          <el-row>
-             <el-col span="8" class="table-grid-content">
-              <el-button
-                type="primary"
-                @click="addRow()"
-              >新增
-             </el-button>
-             </el-col>
-          </el-row>
+          <el-form :inline="true">
+            <el-form-item style="float: left" label="查询用户信息:">
+              <el-input v-model="keyUser" placeholder="查询所需要的内容......"></el-input>
+            </el-form-item>
+            <el-form-item style="float: right">
+              <el-button type="primary" size="small" icon="el-icon-edit-outline"  @click="addRow()">添加</el-button>
+            </el-form-item>
+          </el-form>
 
           <el-table
             :data="tableData"
@@ -354,10 +352,5 @@
 
 </script>
 <style>
-  .table-grid-content {
-    border-radius: 4px;
-    background: #ebeef5;
-    padding: 10px;
-    float:right;
-  }
+
 </style>
