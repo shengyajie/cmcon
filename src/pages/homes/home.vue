@@ -125,12 +125,10 @@
               <!-- /.box-body -->
             </div>
             <!-- /.box -->
-
             <!-- /.box -->
             <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">首问</h3>
-
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                     class="fa fa-minus"></i>
@@ -148,7 +146,6 @@
               <!-- /.box-body -->
             </div>
           </div>
-
           <!-- /.col (RIGHT) -->
         </div>
         <!-- /.row -->
@@ -160,10 +157,10 @@
 </template>
 <script>
   import HomeHeader from '@/common/header/Header.vue'
-  import HomeAside from '@/common/aside/aside'
-  import HomeFoot from '@/common/foot/Foot'
+  import HomeAside from '@/common/aside/aside.vue'
+  import HomeFoot from '@/common/foot/Foot.vue'
   export default {
-    name: 'home',
+    name:'home',
     components: {
       'HomeHeader':HomeHeader,
       'HomeAside':HomeAside,
@@ -176,12 +173,10 @@
     }
   }
   $(function () {
-
-
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
     // This will get the first returned node in the jQuery collection.
-    var areaChart       = new Chart(areaChartCanvas)
+    var areaChart= new Chart(areaChartCanvas)
 
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

@@ -25,9 +25,9 @@ import 'font-awesome/css/font-awesome.min.css'
 import './assets/js/jquery.min.js'
 //引入chart
 import './assets/js/chart.js/Chart.js'
+import echarts from 'echarts'
 
-
-
+Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 

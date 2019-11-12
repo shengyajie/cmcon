@@ -288,9 +288,8 @@
         this.editForm = Object.assign({}, row);
         _index = index;
       },
-      //保存编辑
-      sumbitEditRow() {
-        var editData = _index;
+      //保存编辑666
+        var editData=-index;
         this.tableData[editData].date = this.editForm.editdate;
         this.tableData[editData].name = this.editForm.editname;
         this.tableData[editData].province = this.editForm.editprovince;

@@ -11,9 +11,9 @@
       <section class="content">
         <template>
           <el-form :inline="true">
-            <el-form-item style="float: left" label="查询用户信息:">
-              <el-input v-model="keyUser" placeholder="查询所需要的内容......"></el-input>
-            </el-form-item>
+<!--            <el-form-item style="float: left" label="查询用户信息:">-->
+<!--              <el-input v-model="keyUser" placeholder="查询所需要的内容......"></el-input>-->
+<!--            </el-form-item>-->
             <el-form-item style="float: right">
               <el-button type="primary" size="small" icon="el-icon-edit-outline"  @click="addRow()">添加</el-button>
             </el-form-item>
