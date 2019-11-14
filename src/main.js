@@ -26,7 +26,9 @@ import './assets/js/jquery.min.js'
 //引入chart
 import './assets/js/chart.js/Chart.js'
 import echarts from 'echarts'
+import ECharts from 'vue-echarts/components/ECharts.vue'
 
+Vue.component('v-chart', ECharts)
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
