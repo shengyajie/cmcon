@@ -519,7 +519,7 @@
       //   if(value === '0<AVE<=400000') {
       //     // 这个0< whour < 400000
       //     this.tableData = this.tableData.filter((table) => {
-      //       return table.whour < 40000
+      //       return table.whour < 400000
       //     })
       //     console.log(this.tableData)
       //   }
@@ -530,7 +530,7 @@
       //       })
       //       this.tableData = filterList
       //   }
-      //
+      // //
       //   if(value === '420000<AVE') {
       //     // whour> 420000
       //     this.tableData = this.tableData.filter((table) => {
@@ -580,30 +580,30 @@
       //   }
       //
       // },
-      // f(value, row,column) {
-      //   let min;
-      //   let max;
-      //   if(value=='0<AVE<1400'){
-      //     min=0;max=1400;
-      //     return row.tcanum>min && row.tcanum<max
-      //   }else if(value=='1400<AVE<1800'){
-      //     min=1400;max=1800;
-      //     return row.tcanum>min && row.tcanum<max
-      //   }else{
-      //     min=1800;
-      //     return row.tcanum>min
-      //   }
-      // },
+      // // f(value, row,column) {
+      // //   let min;
+      // //   let max;
+      // //   if(value=='0<AVE<1400'){
+      // //     min=0;max=1400;
+      // //     return row.tcanum>min && row.tcanum<max
+      // //   }else if(value=='1400<AVE<1800'){
+      // //     min=1400;max=1800;
+      // //     return row.tcanum>min && row.tcanum<max
+      // //   }else{
+      // //     min=1800;
+      // //     return row.tcanum>min
+      // //   }
+      // // },
       //编辑数据
       filterWholeHour(value, row,column) {
         let min;
         let max;
         if(value=='0<AVE<=400000'){
           min=0;max=400000;
-          return row.whour>min || row.whour<max
+          return row.whour>min && row.whour<max
         }else if(value=='400000<AVE<=420000'){
-          min=400000;max=420000;
-          return row.whour>min || row.whour<max
+          min=400001;max=419999;
+          return row.whour>min && row.whour<max
         }else{
           min=420000;
           return row.whour>min
