@@ -14,6 +14,11 @@
   {"text": "20<AVE<=22","value": "20<AVE<=22"},
   {"text": "22<AVE","value": "22<AVE"}
 ],
+  "tonghuashichang": [
+    {"text": "0<AVE<=400000","value": "0<AVE<=400000"},
+    {"text": "400000<AVE<=420000","value": "400000<AVE<=420000"},
+    {"text": "420000<AVE","value": "420000<AVE"}
+  ],
   "junchang": [
     {"text": "0<AVE<=110","value": "0<AVE<=110"},
     {"text": "110<AVE<=140","value": "110<AVE<=140"},
@@ -56,6 +61,20 @@
   {"text": "0<AVE<=40","value": "0<AVE<=40"},
   {"text": "40<AVE<=60","value": "40<AVE<=60"},
   {"text": "60<AVE","value": "60<AVE"}
+],
+  "manyidu": [
+    {"text": "0<AVE<=70","value": "0<AVE<=70"},
+    {"text": "70<AVE<=80","value": "70<AVE<=80"},
+    {"text": "80<AVE","value": "80<AVE"}
+  ],"guaman": [
+  {"text": "0<AVE<=70","value": "0<AVE<=70"},
+  {"text": "70<AVE<=80","value": "70<AVE<=80"},
+  {"text": "80<AVE","value": "80<AVE"}
+],"shouwenjiejuelv": [
+  {"text": "0<AVE<=70","value": "0<AVE<=70"},
+  {"text": "70<AVE<=80","value": "70<AVE<=80"},
+  {"text": "80<AVE","value": "80<AVE"}
 ]
+
 
 }

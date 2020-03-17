@@ -35,87 +35,67 @@
                 :row-style="{height:'20px'}"
                 :cell-style="{padding:'0px'}"
               >
+                <el-table-column prop="date" width="100" label="日期"></el-table-column>
+                <el-table-column prop="name" width="100" label="姓名"></el-table-column>
+                <el-table-column prop="Jobna" label="工号" width="80"></el-table-column>
+                <el-table-column prop="number" label="电话" width="80"></el-table-column>
+                <el-table-column prop="subo" label="班组" width="80"></el-table-column>
                 <el-table-column
-                  prop="date"
-                  width="100"
-                  label="日期">
-                </el-table-column>
-                <el-table-column
-                  prop="tinfo"
-                  width="100"
-                  label="信息">
-                </el-table-column>
-                <el-table-column
-                  prop="tnum"
+                  prop="whour"
+                  label="通话时长"
                   width="80"
-                  label="出勤人数"
-                  :filters="chuqin"
-                  :filter-method="filterHandler">
+                  :filters="tonghuashichang"
+                  :filter-method="filterWholeHour">
+                </el-table-column>
+                <el-table-column
+                  prop="caluser"
+                  label="通话利用率"
+                  width="80"
+                  :filters="tonghualiyonglv"
+                  :filter-method="fi1">
+                </el-table-column>
+                <el-table-column
+                  prop="avecalti"
+                  label="通话均长"
+                  width="80"
+                  :sortable="true"
 
-                </el-table-column>
-                <el-table-column
-                  prop="tcanum"
-                  label="时call"
-                  width="80"
                   >
                 </el-table-column>
                 <el-table-column
-                  prop="tavecalti"
-                  label="均长"
+                  prop="idletime"
+                  label="空闲时长"
                   width="80"
-                >
+                 >
                 </el-table-column>
                 <el-table-column
-                  prop="tcl"
-                  label="整理率"
-                  width="80"
-                >
-                </el-table-column>
-                <el-table-column
-                  prop="trate"
-                  label="小休率"
-                  width="80"
-                  :sortable="true" >
-                </el-table-column>
-                <el-table-column
-                  prop="tbura"
-                  label="示忙率"
-                  width="80"
-                  :sortable="true">
-                </el-table-column>
-                <el-table-column
-                  prop="tthrate"
+                  prop="thrate"
                   label="三率"
                   width="80"
-                  :sortable="true" >
-                </el-table-column>
-                <el-table-column
-                  prop="tcaluser"
-                  label="通话利用率"
-                  width="80"
-                  :sortable="true" >
-                </el-table-column>
-                <el-table-column
-                  prop="tcara"
-                  label="呼出占比"
-                  width="80"
-                  :sortable="true" >
+                  >
 
                 </el-table-column>
                 <el-table-column
-                  prop="tidleti"
-                  label="空闲率"
+                  prop="satde"
+                  label="满意度"
                   width="80"
-                  :sortable="true" >
+                 >
 
                 </el-table-column>
                 <el-table-column
-                prop="tsign"
-                label="签入次数"
+                prop="haupsta"
+                label="挂满"
                 width="80"
-                :sortable="true" >
+                >
 
               </el-table-column>
+                <el-table-column
+                  prop="fiqurera"
+                  label="首问解决率"
+                  width="80"
+                >
+
+                </el-table-column>
                 <el-table-column
                   fixed="right"
                   label="操作"
@@ -158,116 +138,116 @@
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="信息"
+            label="姓名"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tinfo"
+              v-model="editForm.name"
               autocomplete="off"
-              placeholder="请输入信息"
+              placeholder="请输入姓名"
               maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="出勤人数"
+            label="工号"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tnum"
+              v-model="editForm.Jobna"
               autocomplete="off"
-              placeholder="请输入出勤人数"
+              placeholder="请输入工号"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="时call"
+            label="电话"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tcanum"
+              v-model="editForm.number"
               autocomplete="off"
-              placeholder="请输入时call"
+              placeholder="请输入电话"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="工作均长"
+            label="班组"
             :label-width="formLabelWidth">
             <el-input
 
-              v-model="editForm.tavecalti"
+              v-model="editForm.subo"
               autocomplete="off"
-              placeholder="请输入均长"
+              placeholder="请输入班组"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="整理率"
+            label="通话时长"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tcl"
+              v-model="editForm.whour"
               autocomplete="off"
-              placeholder="请输入整理率"
+              placeholder="请输入通话时长"
               maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="小休率"
+            label="通话利用率 "
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.trate"
+              v-model="editForm.caluser"
               autocomplete="off"
-              placeholder="请输入小休率"
+              placeholder="请输入通话利用率"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="示忙率"
+            label="通话均长"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tbura"
+              v-model="editForm.avecalti"
               autocomplete="off"
-              placeholder="请输入示忙率"
+              placeholder="请输入通话均长"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="空闲时长"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="editForm.idletime"
+              autocomplete="off"
+              placeholder="请输入空闲时长"
             ></el-input>
           </el-form-item>
           <el-form-item
             label="三率"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tthrate"
+              v-model="editForm.thrate"
               autocomplete="off"
               placeholder="请输入三率"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            label="通话利用率"
-            :label-width="formLabelWidth">
-            <el-input
-              v-model="editForm.tcaluser"
-              autocomplete="off"
-              placeholder="请输入通话利用率"
               maxlength="6"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="呼出占比"
+            label="满意度"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tcara"
+              v-model="editForm.satde"
               autocomplete="off"
-              placeholder="请输入呼出占比"
+              placeholder="请输入满意度"
               maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="空闲率"
+            label="挂满"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tidleti"
+              v-model="editForm.haupsta"
               autocomplete="off"
-              placeholder="请输入空闲率"
+              placeholder="请输入挂满"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="签入次数"
+            label="首问解决率"
             :label-width="formLabelWidth">
             <el-input
-              v-model="editForm.tsign"
+              v-model="editForm.fiqurera"
               autocomplete="off"
-              placeholder="请输入签入次数"
+              placeholder="请输入首问解决率"
             ></el-input>
           </el-form-item>
         </el-form>
@@ -296,119 +276,122 @@
             label="日期"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.adddate"
-              placeholder="请输入日期"
+              v-model="editForm.date"
+              placeholder=""
               autocomplete="off"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="个人信息"
+            label="姓名"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtinfo"
+              v-model="addForm.addname"
               autocomplete="off"
-              placeholder="请输入个人信息"
+              placeholder="请输入姓名"
               maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="出勤人数"
+            label="工号"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtnum"
+              v-model="addForm.addJobna"
               autocomplete="off"
-              placeholder="请输入出勤人数"
+              placeholder="请输入工号"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="时call"
+            label="电话"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtcanum"
+              v-model="addForm.addnumber"
               autocomplete="off"
-              placeholder="请输入时call"
+              placeholder="请输入电话"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="均长"
+            label="班组"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtavecalti"
+
+              v-model="addForm.addsubo"
               autocomplete="off"
-              placeholder="请输入均长"
+              placeholder="请输入班组"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="整理率"
+            label="通话时长"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtcl"
+              v-model="addForm.addwhour"
               autocomplete="off"
-              placeholder="请输入整理率"
+              placeholder="请输入通话时长"
+              maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="小休率"
+            label="通话利用率 "
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtrate"
+              v-model="addForm.addcaluser"
               autocomplete="off"
-              placeholder="小休率"
+              placeholder="请输入通话利用率"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="示忙率"
+            label="通话均长"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtbura"
+              v-model="addForm.addavecalti"
               autocomplete="off"
-              placeholder="请输入示忙率"
+              placeholder="请输入通话均长"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="空闲时长"
+            :label-width="formLabelWidth">
+            <el-input
+              v-model="addForm.addidletime"
+              autocomplete="off"
+              placeholder="请输入空闲时长"
             ></el-input>
           </el-form-item>
           <el-form-item
             label="三率"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtthrate"
+              v-model="addForm.addthrate"
               autocomplete="off"
               placeholder="请输入三率"
               maxlength="6"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="通话利用率"
+            label="满意度"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtcaluser"
+              v-model="addForm.addsatde"
               autocomplete="off"
-              placeholder="请输入通话利用率"
+              placeholder="请输入满意度"
+              maxlength="8"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="呼出占比"
+            label="挂满"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtcara"
+              v-model="addForm.addhaupsta"
               autocomplete="off"
-              placeholder="请输入呼出占比"
+              placeholder="请输入挂满"
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="空闲率"
+            label="首问解决率"
             :label-width="formLabelWidth">
             <el-input
-              v-model="addForm.addtidleti"
+              v-model="addForm.addfiqurera"
               autocomplete="off"
-              placeholder="请输入空闲率"
-            ></el-input>
-          </el-form-item>
-          <el-form-item
-            label="签入次数"
-            :label-width="formLabelWidth">
-            <el-input
-              v-model="addForm.addtsign"
-              autocomplete="off"
-              placeholder="请输入签入次数"
+              placeholder="请输入首问解决率"
             ></el-input>
           </el-form-item>
         </el-form>
@@ -453,13 +436,14 @@
         addForm: [],
         tableData:[],
         select:[],
-        chuqin:[]
-        // renjuncall:[]
-        // filter: [
-        //   {text: '0<AVE<90', value: '0<AVE<90'},
-        //   {text: '90<AVE<100', value: '90<AVE<100'},
-        //   {text: '100<AVE<150', value: '100<AVE<150'},
-        // ]
+        junchang:[],
+        sanlv:[],
+        tonghualiyonglv:[],
+        tonghuashichang:[],
+        manyidu:[],
+        guaman:[],
+        shouwenjiejuelv:[]
+
       };
     },
     // 调用数据
@@ -514,32 +498,88 @@
       },
       _getselect() {
         let url = 'static/select.json'
-        // let _this = this
+        let _this = this
         _this.$http.get(url, {}).then((res) => {
-          // _this.select = res.data;
-          this.chuqin=res.chuqin;
-          // this.renjuncall=res.renjuncall;
-          // console.log( res.data);
+          _this.select = res.data;
+          this.shicall=res.data.shicall;
+          this.junchang=res.data.junchang;
+          this.sanlv=res.data.sanlv;
+          this.tonghualiyonglv=res.data.tonghualiyonglv;
+          this.tonghuashichang=res.data.tonghuashichang;
+          this.manyidu=res.data.manyidu;
+          this.guaman=res.data.guaman;
+          this.shouwenjiejuelv=res.data.shouwenjiejuelv;
+
         }).catch((err) => {
           console.log(err);
         })
       },
       // 筛选
-      filterHandler(value, row,column) {
-        let min;
-        let max;
-        if(value=='1<AVE<3'){
-          min=1;max=3;
-          return row.tnum>min && row.tnum<max
-        }else if(value=='3<AVE<5'){
-          min=3;max=5;
-          return row.tnum>min && row.tnum<max
-        }else{
-          min=5;
-          return row.tnum>min
-        }
-
-      },
+      // filterWholeHour(value, row) {
+      //   if(value === '0<AVE<=400000') {
+      //     // 这个0< whour < 400000
+      //     this.tableData = this.tableData.filter((table) => {
+      //       return table.whour < 40000
+      //     })
+      //     console.log(this.tableData)
+      //   }
+      //   if(value === '400000<AVE<=420000') {
+      //     // 400000< whour < 420000
+      //      const filterList = this.tableData.filter((table) => {
+      //        return table.whour > 400000 || table.whour < 420000
+      //       })
+      //       this.tableData = filterList
+      //   }
+      //
+      //   if(value === '420000<AVE') {
+      //     // whour> 420000
+      //     this.tableData = this.tableData.filter((table) => {
+      //       return table.whour > 420000
+      //     })
+      //     console.log(this.tableData)
+      //   }
+      // },
+      // filterHandler(value, row) {
+      //   console.log(value)
+      //   // 5%<AVE<=10%
+      //   // 10%<AVE
+      //   // 0<AVE<=5%
+      //   if(value === '0<AVE<=5%') {
+      //     // 这个0< whour < 400000
+      //     this.tableData = this.tableData.filter((table) => {
+      //       console.log(table.whour)
+      //       return table.whour > 0 && table.whour < 40000
+      //     })
+      //     console.log(this.tableData)
+      //   }
+      //   if(value === '0<AVE<=5%') {
+      //     // 400000< whour < 420000
+      //   }
+      //
+      //   if(value === '0<AVE<=5%') {
+      //     // whour> 420000
+      //   }
+      //   return
+      //   if(value=='0<AVE<400000'){
+      //     return  row.whour<400000 && row.whour>0
+      //   }else if(value=='400000<AVE<420000'){
+      //     return  row.whour<420000 && row.whour>400000
+      //   }else{
+      //     return row.whour> 420000
+      //   }
+      //
+      // },
+      // fi1(value, row,column) {
+      //   if(value=='0<AVE<60%'){
+      //     return  row.caluser<0.6 && row.caluser>0
+      //   }else if(value=='60%<AVE<80%'){
+      //     return  row.caluser<0.8 && row.caluser>0.6
+      //   }else{
+      //
+      //     return row.caluser> 420000
+      //   }
+      //
+      // },
       // f(value, row,column) {
       //   let min;
       //   let max;
@@ -555,6 +595,20 @@
       //   }
       // },
       //编辑数据
+      filterWholeHour(value, row,column) {
+        let min;
+        let max;
+        if(value=='0<AVE<=400000'){
+          min=0;max=400000;
+          return row.whour>min || row.whour<max
+        }else if(value=='400000<AVE<=420000'){
+          min=400000;max=420000;
+          return row.whour>min || row.whour<max
+        }else{
+          min=420000;
+          return row.whour>min
+        }
+      },
       handleEdit(index, row) {
         this.editFormVisible = true;
         this.editForm = this.tableData[index];
@@ -566,18 +620,18 @@
       sumbitEditRow() {
         var editData = _index;
         this.tableData[editData].date = this.editForm.date;
-        this.tableData[editData].tinfo = this.editForm.tinfo;
-        this.tableData[editData].tnum = this.editForm.tnum;
-        this.tableData[editData].tcanum = this.editForm.tcanum;
-        this.tableData[editData].tavecalti = this.editForm.tavecalti;
-        this.tableData[editData].tcl = this.editForm.tcl;
-        this.tableData[editData].trate= this.editForm.trate;
-        this.tableData[editData].tbura = this.editForm.tbura;
-        this.tableData[editData].tthrate = this.editForm.tthrate;
-        this.tableData[editData].tcaluser = this.editForm.tcaluser;
-        this.tableData[editData].tcara = this.editForm.tcara;
-        this.tableData[editData].tidleti = this.editForm.tidleti;
-        this.tableData[editData].tsign = this.editForm.tsign;
+        this.tableData[editData].name = this.editForm.name;
+        this.tableData[editData].Jobna = this.editForm.Jobna;
+        this.tableData[editData].number = this.editForm.number;
+        this.tableData[editData].subo = this.editForm.subo;
+        this.tableData[editData].whour = this.editForm.whour;
+        this.tableData[editData].caluser= this.editForm.caluser;
+        this.tableData[editData].avecalti = this.editForm.avecalti;
+        this.tableData[editData].idletime = this.editForm.idletime;
+        this.tableData[editData].thrate = this.editForm.thrate;
+        this.tableData[editData].satde = this.editForm.satde;
+        this.tableData[editData].haupsta = this.editForm.haupsta;
+        this.tableData[editData].fiqurera = this.editForm.fiqurera;
         this.editFormVisible = false;
       },
       cancel() {
@@ -589,18 +643,18 @@
         this.addFormVisible = true;
         this.addForm = {
           adddate: '',
-          addtinfo: '',
-          addtnum:"",
-          addtcanum:"",
-          addtavecalti:"",
-          addtcl:"",
-          addtrate:"",
-          addtbura:'',
-          addtthrate:'',
-          addtcaluser:"",
-          addtcara:'',
-          addtidleti:"",
-          addtsign:"",
+          addname: '',
+          addJobna:"",
+          addnumber:"",
+          addsubo:"",
+          addwhour:"",
+          addcaluser:"",
+          addavecalti:'',
+          addidletime:'',
+          addthrate:"",
+          addsatde:'',
+          addhaupsta:"",
+          addfiqurera:"",
         }
       },
       //将新增的数据添加到表格中
@@ -608,19 +662,18 @@
         this.tableData = this.tableData || [];
         this.tableData.push({
           date:this.addForm.adddate,
-          tinfo:this.addForm.addtinfo,
-          tnum:this.addForm.addtnum,
-          tcanum:this.addForm.addtcanum,
-          tavecalti:this.addForm.addtavecalti,
-          tcl:this.addForm.addtcl,
-          trate:this.addForm.addtrate,
-          tbura:this.addForm.addtbura,
-          tthrate:this.addForm.addtthrate,
-          tcaluser:this.addForm.addtcaluser,
-          tcara:this.addForm.addtcara,
+          name:this.addForm.addname,
+          Jobna:this.addForm.addJobna,
+          number:this.addForm.addnumber,
+          subo:this.addForm.addsubo,
+          whour:this.addForm.addwhour,
+          caluser:this.addForm.addcaluser,
+          avecalti:this.addForm.addavecalti,
+          idletime:this.addForm.addidletime,
+          thrate:this.addForm.addthrate,
           satde:this.addForm.addsatde,
-          tidleti:this.addForm.addtidleti,
-          tsign:this.addForm.addtsign
+          haupsta:this.addForm.addhaupsta,
+          fiqurera:this.addForm.addfiqurera
         })
         this.addFormVisible = false
       },

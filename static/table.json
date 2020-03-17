@@ -1,7 +1,8 @@
 {
 "data":[
-  {"date":"27000","tinfo":"孙雪成","tnum":"0","tcanum":"0","tavecalti":"   0.00%","tcl":"9533","trate":"0","tbura":"0","tthrate":"9533","tcaluser":"0","tcara":"0","tidleti":"GD27000","tsign":"0:00:00"},
-  {"date":"27001","tinfo":"王海强","tnum":"131","tcanum":"19","tavecalti":"  69.52%","tcl":"17046","trate":"11564","tbura":"286","tthrate":"4298","tcaluser":"89","tcara":"89","tidleti":"GD27001","tsign":"0:00:00"},
-  {"date":"27002","tinfo":"欧丽姗","tnum":"113","tcanum":"24","tavecalti":"  79.64%","tcl":"18002","trate":"13716","tbura":"621","tthrate":"2537","tcaluser":"121","tcara":"121","tidleti":"GD27002","tsign":"0:00:00"},
-  {"date":"27012","tinfo":"陈满爱","tnum":"109","tcanum":"26","tavecalti":"  86.58%","tcl":"15973","trate":"12784","tbura":"1046","tthrate":"1381","tcaluser":"117","tcara":"117","tidleti":"GD27012","tsign":"0:00:00"}
+  {"date":"2020/3/17","name":"陈炜敏","Jobna":"28984","number":"113733737373 ","subo":"博岳1班","whour":"421027","caluser":"72%","avecalti":"131.59","idletime":"19.37 ","thrate":"10%","satde":"80%","haupsta":"80%","fiqurera":"80%"},
+  {"date":"2020/3/17","name":"冯伟金","Jobna":"29565","number":"113733737373 ","subo":"博岳1班","whour":"421000","caluser":"67%","avecalti":"137.4","idletime":"19.30 ","thrate":"8%","satde":"70%","haupsta":"70%","fiqurera":"70%"},
+  {"date":"2020/3/17","name":"欧凤波","Jobna":"29585","number":"113733737373 ","subo":"博岳1班","whour":"421027","caluser":"74%","avecalti":"132.32","idletime":"18.20 ","thrate":"12%","satde":"90%","haupsta":"90%","fiqurera":"90%"},
+  {"date":"2020/3/17","name":"谢瑱","Jobna":"28804","number":"113733737373 ","subo":"博岳1班","whour":"30000","caluser":"72%","avecalti":"142.32","idletime":"19.77 ","thrate":"11%","satde":"89%","haupsta":"89%","fiqurera":"89%"},
+  {"date":"2020/3/17","name":"吕文华","Jobna":"28991","number":"113733737373 ","subo":"博岳1班","whour":"421027","caluser":"73%","avecalti":"146.26","idletime":"17.08 ","thrate":"9%","satde":"95%","haupsta":"95%","fiqurera":"95%"}
 ]}
