@@ -16,13 +16,13 @@
 ],
   "tonghuashichang": [
     {"text": "0<AVE<=400000","value": "0<AVE<=400000"},
-    {"text": "400001AVE<=419999","value": "400001<AVE<=419999"},
+    {"text": "400001<AVE<=419999","value": "400001<AVE<=419999"},
     {"text": "420000<AVE","value": "420000<AVE"}
   ],
   "junchang": [
     {"text": "0<AVE<=110","value": "0<AVE<=110"},
-    {"text": "110<AVE<=140","value": "110<AVE<=140"},
-    {"text": "140<AVE","value": "140<AVE"}
+    {"text": "111<AVE<=140","value": "111<AVE<=140"},
+    {"text": "141<AVE","value": "141<AVE"}
   ],
   "zhenglilv": [
     {"text": "0<AVE<=4%","value": "0<AVE<=4%"},

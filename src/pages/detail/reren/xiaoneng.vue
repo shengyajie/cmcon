@@ -52,14 +52,14 @@
                   label="通话利用率"
                   width="80"
                   :filters="tonghualiyonglv"
-                  :filter-method="fi1">
+                  :filter-method="filterHour">
                 </el-table-column>
                 <el-table-column
                   prop="avecalti"
                   label="通话均长"
                   width="80"
-                  :sortable="true"
-
+                  :filters="junchang"
+                  :filter-method="filterjun"
                   >
                 </el-table-column>
                 <el-table-column
@@ -515,93 +515,14 @@
         })
       },
       // 筛选
-      // filterWholeHour(value, row) {
-      //   if(value === '0<AVE<=400000') {
-      //     // 这个0< whour < 400000
-      //     this.tableData = this.tableData.filter((table) => {
-      //       return table.whour < 400000
-      //     })
-      //     console.log(this.tableData)
-      //   }
-      //   if(value === '400000<AVE<=420000') {
-      //     // 400000< whour < 420000
-      //      const filterList = this.tableData.filter((table) => {
-      //        return table.whour > 400000 || table.whour < 420000
-      //       })
-      //       this.tableData = filterList
-      //   }
-      // //
-      //   if(value === '420000<AVE') {
-      //     // whour> 420000
-      //     this.tableData = this.tableData.filter((table) => {
-      //       return table.whour > 420000
-      //     })
-      //     console.log(this.tableData)
-      //   }
-      // },
-      // filterHandler(value, row) {
-      //   console.log(value)
-      //   // 5%<AVE<=10%
-      //   // 10%<AVE
-      //   // 0<AVE<=5%
-      //   if(value === '0<AVE<=5%') {
-      //     // 这个0< whour < 400000
-      //     this.tableData = this.tableData.filter((table) => {
-      //       console.log(table.whour)
-      //       return table.whour > 0 && table.whour < 40000
-      //     })
-      //     console.log(this.tableData)
-      //   }
-      //   if(value === '0<AVE<=5%') {
-      //     // 400000< whour < 420000
-      //   }
-      //
-      //   if(value === '0<AVE<=5%') {
-      //     // whour> 420000
-      //   }
-      //   return
-      //   if(value=='0<AVE<400000'){
-      //     return  row.whour<400000 && row.whour>0
-      //   }else if(value=='400000<AVE<420000'){
-      //     return  row.whour<420000 && row.whour>400000
-      //   }else{
-      //     return row.whour> 420000
-      //   }
-      //
-      // },
-      // fi1(value, row,column) {
-      //   if(value=='0<AVE<60%'){
-      //     return  row.caluser<0.6 && row.caluser>0
-      //   }else if(value=='60%<AVE<80%'){
-      //     return  row.caluser<0.8 && row.caluser>0.6
-      //   }else{
-      //
-      //     return row.caluser> 420000
-      //   }
-      //
-      // },
-      // // f(value, row,column) {
-      // //   let min;
-      // //   let max;
-      // //   if(value=='0<AVE<1400'){
-      // //     min=0;max=1400;
-      // //     return row.tcanum>min && row.tcanum<max
-      // //   }else if(value=='1400<AVE<1800'){
-      // //     min=1400;max=1800;
-      // //     return row.tcanum>min && row.tcanum<max
-      // //   }else{
-      // //     min=1800;
-      // //     return row.tcanum>min
-      // //   }
-      // // },
-      //编辑数据
+
       filterWholeHour(value, row,column) {
         let min;
         let max;
         if(value=='0<AVE<=400000'){
           min=0;max=400000;
           return row.whour>min && row.whour<max
-        }else if(value=='400000<AVE<=420000'){
+        }else if(value=='400001<AVE<=419999'){
           min=400001;max=419999;
           return row.whour>min && row.whour<max
         }else{
@@ -609,6 +530,41 @@
           return row.whour>min
         }
       },
+      filterHour(value, row,column) {
+        let min;
+        let max;
+        let ret = parseFloat(row.caluser)
+        if(value === '0<AVE<=60%'){
+          min = 0;
+          max = 60;
+          return ret > min && ret < max
+        } else if (value === '80%<AVE'){
+          min = 80;
+          return ret > min
+        } else {
+          min = 60;
+          max = 80;
+          return ret >= min && ret <= max
+        }
+      },
+      filterjun(value, row,column) {
+        let min;
+        let max;
+        let ret = parseFloat(row.avecalti)
+        if(value === '0<AVE<=110'){
+          min = 0;
+          max = 110;
+          return ret > min && ret < max
+        } else if (value === '141<AVE'){
+          min = 141;
+          return ret > min
+        } else {
+          min = 111;
+          max = 140;
+          return ret >= min && ret <= max
+        }
+      },
+      //编辑数据
       handleEdit(index, row) {
         this.editFormVisible = true;
         this.editForm = this.tableData[index];
