@@ -6,6 +6,7 @@ import router from './router'
 //引入element
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
 
 //引入bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,7 +15,9 @@ import 'bootstrap/dist/js/bootstrap.min'
 //AdminLTE
 import './assets/css/AdminLTE.min.css'
 import './assets/css/skins/_all-skins.min.css'
-import './assets/css/skins/skin-blue.min.css'
+// import './assets/css/skins/skin-blue.min.css'
+import './assets/css/skins/skin-purple.min.css'
+
 
 
 import './assets/js/fastclick/lib/fastclick.js'
@@ -26,9 +29,9 @@ import './assets/js/jquery.min.js'
 //引入chart
 import './assets/js/chart.js/Chart.js'
 import echarts from 'echarts'
-import ECharts from 'vue-echarts/components/ECharts.vue'
-
-Vue.component('v-chart', ECharts)
+import ECharts from 'vue-echarts/components/ECharts.vue';
+Vue.prototype.$http = axios;
+Vue.component('v-chart', ECharts);
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
@@ -40,3 +43,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+

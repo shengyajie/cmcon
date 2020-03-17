@@ -5,7 +5,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <small>鸿联公司员工异常生产数据预警>><b>整体分析</b></small>
+          <small>个人>><b>效能</b></small>
         </h1>
       </section>
       <section class="content">
@@ -49,100 +49,72 @@
                   prop="tnum"
                   width="80"
                   label="出勤人数"
-                  :filters="filter"
+                  :filters="chuqin"
                   :filter-method="filterHandler">
-<!--                <template slot-scope="scope">-->
-<!--                  {{scope.row.tnum | tnum}}-->
-<!--                </template>-->
+
                 </el-table-column>
                 <el-table-column
                   prop="tcanum"
                   label="时call"
-                  width="80">
-
-                  <template slot-scope="scope">
-                    {{scope.row.tcanum | tcanum}}
-                  </template>
+                  width="80"
+                  >
                 </el-table-column>
                 <el-table-column
                   prop="tavecalti"
                   label="均长"
                   width="80"
                 >
-                  <template slot-scope="scope">
-                    {{scope.row.tavecalti | tavecalti}}
-                  </template>
                 </el-table-column>
                 <el-table-column
                   prop="tcl"
                   label="整理率"
                   width="80"
                 >
-                  <template slot-scope="scope">
-                    {{scope.row.tcl | tcl}}
-                  </template>
                 </el-table-column>
                 <el-table-column
                   prop="trate"
                   label="小休率"
                   width="80"
                   :sortable="true" >
-                  <template slot-scope="scope">
-                    {{scope.row.trate | trate}}
-                  </template>
                 </el-table-column>
                 <el-table-column
                   prop="tbura"
                   label="示忙率"
                   width="80"
-                  :sortable="true" :sort-method="sortByDate1">
-                  <template slot-scope="scope">
-                    {{scope.row.tbura |tbura}}
-                  </template>
+                  :sortable="true">
                 </el-table-column>
                 <el-table-column
                   prop="tthrate"
                   label="三率"
                   width="80"
                   :sortable="true" >
-                  <template slot-scope="scope">
-                    {{scope.row.tthrate | tthrate}}
-                  </template>
                 </el-table-column>
                 <el-table-column
                   prop="tcaluser"
                   label="通话利用率"
                   width="80"
                   :sortable="true" >
-                  <template slot-scope="scope">
-                    {{scope.row.tcaluser | tcaluser}}
-                  </template>
                 </el-table-column>
                 <el-table-column
                   prop="tcara"
                   label="呼出占比"
                   width="80"
                   :sortable="true" >
-                  <template slot-scope="scope">
-                    {{scope.row.tcara |tcara}}
-                  </template>
+
                 </el-table-column>
                 <el-table-column
                   prop="tidleti"
                   label="空闲率"
                   width="80"
                   :sortable="true" >
-<!--                  <template slot-scope="scope">-->
-<!--                    {{scope.row.tidleti | tidleti}}-->
-<!--                  </template>-->
-                </el-table-column> <el-table-column
+
+                </el-table-column>
+                <el-table-column
                 prop="tsign"
                 label="签入次数"
                 width="80"
                 :sortable="true" >
-                <template slot-scope="scope">
-                  {{scope.row.tsign| tsign}}
-                </template>
+
               </el-table-column>
                 <el-table-column
                   fixed="right"
@@ -460,6 +432,7 @@
   import HomeFoot from '@/common/foot/Foot'
   import FileSaver from 'file-saver'
   import XLSX from 'xlsx'
+
   var _index ;//定义一个全局变量，以获取行数据的行号
   export default {
     name: 'home',
@@ -478,86 +451,80 @@
         editForm: [],
         addFormVisible: false,//是否显示新增窗口
         addForm: [],
-          tableData: [{
-          date: '2016-05-04',
-          tinfo: '科慧成熟会员',
-          tnum: '1',
-          tcanum: '20.52',
-          tavecalti: '132',
-          tcl: "2%",
-          trate:"4%",
-          tbura:"2%",
-          tthrate:"13%",
-          tcaluser:"77%",
-          tcara:"2%",
-          tidleti:"10%",
-          tsign:"66"
-        }, {
-            date: '2016-05-04',
-            tinfo: '鸿联成熟会员',
-            tnum: '2',
-            tcanum: '20.52',
-            tavecalti: '132',
-            tcl: "2%",
-            trate:"4%",
-            tbura:"2%",
-            tthrate:"13%",
-            tcaluser:"77%",
-            tcara:"2%",
-            tidleti:"10%",
-            tsign:"66"
-        },
-          {
-            date: '2016-05-04',
-            tinfo: '肇庆科慧成熟会员',
-            tnum: '7',
-            tcanum: '20.52',
-            tavecalti: '132',
-            tcl: "2%",
-            trate:"4%",
-            tbura:"2%",
-            tthrate:"13%",
-            tcaluser:"77%",
-            tcara:"2%",
-            tidleti:"10%",
-            tsign:"66"
-          }, {
-              date: '2016-05-04',
-              tinfo: '博岳成熟会员',
-              tnum: '4',
-              tcanum: '20.52',
-              tavecalti: '132',
-              tcl: "2%",
-              trate:"4%",
-              tbura:"2%",
-              tthrate:"13%",
-              tcaluser:"77%",
-              tcara:"2%",
-              tidleti:"10%",
-              tsign:"66"
-          }, {
-              date: '2016-05-04',
-              tinfo: '家宽成熟会员',
-              tnum: '3',
-              tcanum: '20.52',
-              tavecalti: '132',
-              tcl: "2%",
-              trate:"4%",
-              tbura:"2%",
-              tthrate:"13%",
-              tcaluser:"77%",
-              tcara:"2%",
-              tidleti:"10%",
-              tsign:"66"
-          }],
-        filter: [
-          {text: '1<AVE<3', value: '1<AVE<3'},
-          {text: '3<AVE<5', value: '3<AVE<5'},
-          {text: '6<AVE<9', value: '6<AVE<9'}
-        ]
+        tableData:[],
+        select:[],
+        chuqin:[]
+        // renjuncall:[]
+        // filter: [
+        //   {text: '0<AVE<90', value: '0<AVE<90'},
+        //   {text: '90<AVE<100', value: '90<AVE<100'},
+        //   {text: '100<AVE<150', value: '100<AVE<150'},
+        // ]
       };
     },
+    // 调用数据
+    // 调用数据
+    created() {
+      this._getBanZuData(),
+        this._getselect()
+    },
+    // created: function () {
+    //   var data = []
+    //   let url = 'static/table.json'
+    //   // console.log(Vue)
+    //   let _this = this
+    //   this.$http.get(url, {}).then(function (res) {
+    //
+    //     res = res.data
+    //     console.log(res.data);
+    //     for (let i = 0; i < res.data.length; i++) {
+    //       var obj = {}
+    //       obj.date = res.data[i].date
+    //       obj.tinfo = res.data[i].tinfo
+    //       obj.tnum = res.data[i].tnum
+    //       obj.tcanum = res.data[i].tcanum
+    //       obj.tavecalti = res.data[i].tavecalti
+    //       obj.tcl = res.data[i].tcl
+    //       obj.trate = res.data[i].trate
+    //       obj.tbura = res.data[i].tbura
+    //       obj.tthrate = res.data[i].tthrate
+    //       obj.tcaluser = res.data[i].tcaluser
+    //       obj.tcara = res.data[i].tcara
+    //       obj.tidleti = res.data[i].tidleti
+    //       obj.tsign = res.data[i].tsign
+    //       data[i] = obj
+    //
+    //     }
+    //     _this.tableData =  res.data
+    //   }).catch(function (error) {
+    //     console.log(error);
+    //   })
+    // },
     methods:{
+      // 调用数据
+      _getBanZuData() {
+        let url = 'static/table.json'
+        let _this = this
+        // 调用这句的api在哪里
+        _this.$http.get(url, {}).then((res) => {
+          _this.tableData =  res.data.data
+        }).catch((err) => {
+          console.log(err);
+        })
+      },
+      _getselect() {
+        let url = 'static/select.json'
+        // let _this = this
+        _this.$http.get(url, {}).then((res) => {
+          // _this.select = res.data;
+          this.chuqin=res.chuqin;
+          // this.renjuncall=res.renjuncall;
+          // console.log( res.data);
+        }).catch((err) => {
+          console.log(err);
+        })
+      },
+      // 筛选
       filterHandler(value, row,column) {
         let min;
         let max;
@@ -568,28 +535,24 @@
           min=3;max=5;
           return row.tnum>min && row.tnum<max
         }else{
-           min=6;max=9;
-          return row.tnum>min && row.tnum<max
+          min=5;
+          return row.tnum>min
         }
+
       },
-      // dosome(){
-      //
-      //   // console.log(1);
-      //   // const ret = this.tableData.filter((item)=>{
-      //   //   return item.tnum>min&& item.tnum<max;
-      //   // })
-      //   let ret = this.tableData.filter(function(item,index,array){
-      //     console.log(item)
-      //     if(item.tnum>min && item.tnum<max){
-      //       return true
-      //     }else{
-      //       return false
-      //     }
-      //
-      //     // return item.tnum > min && item.tnum < max;
-      //   })
-      //   console.log(ret)
-      //   // this.tableData=ret;
+      // f(value, row,column) {
+      //   let min;
+      //   let max;
+      //   if(value=='0<AVE<1400'){
+      //     min=0;max=1400;
+      //     return row.tcanum>min && row.tcanum<max
+      //   }else if(value=='1400<AVE<1800'){
+      //     min=1400;max=1800;
+      //     return row.tcanum>min && row.tcanum<max
+      //   }else{
+      //     min=1800;
+      //     return row.tcanum>min
+      //   }
       // },
       //编辑数据
       handleEdit(index, row) {
@@ -701,9 +664,7 @@
 
 
 
-      filter:{
 
-      },
       computed:{
         tableData:function(){
           var search=this.search;

@@ -5488,7 +5488,7 @@
 	    value: function trigger(_name) {
 	      var _this$options;
 
-	      var name = "".concat(_name, ".bs.table");
+	      var name = "".concat(_name, ".table");
 
 	      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key2 = 1; _key2 < _len; _key2++) {
 	        args[_key2 - 1] = arguments[_key2];
@@ -5498,7 +5498,7 @@
 
 	      this.$el.trigger($.Event(name), args);
 	      this.options.onAll(name, args);
-	      this.$el.trigger($.Event('all.bs.table'), [name, args]);
+	      this.$el.trigger($.Event('table'), [name, args]);
 	    }
 	  }, {
 	    key: "resetHeader",
@@ -6876,7 +6876,7 @@
 
 	  var value;
 	  this.each(function (i, el) {
-	    var data = $(el).data('bootstrap.table');
+	    var data = $(el).data('table');
 	    var options = $.extend({}, BootstrapTable.DEFAULTS, $(el).data(), _typeof(option) === 'object' && option);
 
 	    if (typeof option === 'string') {
@@ -6893,12 +6893,12 @@
 	      value = (_data2 = data)[option].apply(_data2, args);
 
 	      if (option === 'destroy') {
-	        $(el).removeData('bootstrap.table');
+	        $(el).removeData('table');
 	      }
 	    }
 
 	    if (!data) {
-	      $(el).data('bootstrap.table', data = new $.BootstrapTable(el, options));
+	      $(el).data('table', data = new $.BootstrapTable(el, options));
 	    }
 	  });
 	  return typeof value === 'undefined' ? this : value;

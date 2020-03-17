@@ -5,7 +5,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <small>鸿联公司员工异常生产数据预警>><b>整体分析</b></small>
+          <small>科室及团队>><b>效能</b></small>
         </h1>
       </section>
       <section class="content">
@@ -51,9 +51,9 @@
                   label="出勤人数"
                   :filters="filter"
                   :filter-method="filterHandler">
-<!--                <template slot-scope="scope">-->
-<!--                  {{scope.row.tnum | tnum}}-->
-<!--                </template>-->
+                  <!--                <template slot-scope="scope">-->
+                  <!--                  {{scope.row.tnum | tnum}}-->
+                  <!--                </template>-->
                 </el-table-column>
                 <el-table-column
                   prop="tcanum"
@@ -132,9 +132,9 @@
                   label="空闲率"
                   width="80"
                   :sortable="true" >
-<!--                  <template slot-scope="scope">-->
-<!--                    {{scope.row.tidleti | tidleti}}-->
-<!--                  </template>-->
+                  <template slot-scope="scope">
+                    {{scope.row.tidleti | tidleti}}
+                  </template>
                 </el-table-column> <el-table-column
                 prop="tsign"
                 label="签入次数"
@@ -478,84 +478,65 @@
         editForm: [],
         addFormVisible: false,//是否显示新增窗口
         addForm: [],
-          tableData: [{
-          date: '2016-05-04',
-          tinfo: '科慧成熟会员',
-          tnum: '1',
-          tcanum: '20.52',
-          tavecalti: '132',
-          tcl: "2%",
-          trate:"4%",
-          tbura:"2%",
-          tthrate:"13%",
-          tcaluser:"77%",
-          tcara:"2%",
-          tidleti:"10%",
-          tsign:"66"
-        }, {
-            date: '2016-05-04',
-            tinfo: '鸿联成熟会员',
-            tnum: '2',
-            tcanum: '20.52',
-            tavecalti: '132',
-            tcl: "2%",
-            trate:"4%",
-            tbura:"2%",
-            tthrate:"13%",
-            tcaluser:"77%",
-            tcara:"2%",
-            tidleti:"10%",
-            tsign:"66"
-        },
-          {
-            date: '2016-05-04',
-            tinfo: '肇庆科慧成熟会员',
-            tnum: '7',
-            tcanum: '20.52',
-            tavecalti: '132',
-            tcl: "2%",
-            trate:"4%",
-            tbura:"2%",
-            tthrate:"13%",
-            tcaluser:"77%",
-            tcara:"2%",
-            tidleti:"10%",
-            tsign:"66"
-          }, {
-              date: '2016-05-04',
-              tinfo: '博岳成熟会员',
-              tnum: '4',
-              tcanum: '20.52',
-              tavecalti: '132',
-              tcl: "2%",
-              trate:"4%",
-              tbura:"2%",
-              tthrate:"13%",
-              tcaluser:"77%",
-              tcara:"2%",
-              tidleti:"10%",
-              tsign:"66"
-          }, {
-              date: '2016-05-04',
-              tinfo: '家宽成熟会员',
-              tnum: '3',
-              tcanum: '20.52',
-              tavecalti: '132',
-              tcl: "2%",
-              trate:"4%",
-              tbura:"2%",
-              tthrate:"13%",
-              tcaluser:"77%",
-              tcara:"2%",
-              tidleti:"10%",
-              tsign:"66"
-          }],
+        tableData:[],
+      //   tableData: [{
+      //     date: '2016-05-04',
+      //     tinfo: '科慧成熟会员',
+      //     tnum: '93',
+      //     tcanum: '20.52',
+      //     tavecalti: '132',
+      //     tcl: "7%",
+      //     trate:"4%",
+      //     tbura:"2%",
+      //     tthrate:"13%",
+      //     tcaluser:"77%",
+      //     tcara:"2%",
+      //     tidleti:"10%",
+      //     tsign:"66"
+      //   },
+      // ],
         filter: [
           {text: '1<AVE<3', value: '1<AVE<3'},
           {text: '3<AVE<5', value: '3<AVE<5'},
           {text: '6<AVE<9', value: '6<AVE<9'}
         ]
       };
+    },
+    // 调用数据
+    created: function () {
+      var data = []
+      let url = 'static/keshi.json'
+      // console.log(Vue)
+      let _this = this
+      // 这个是可以的吧额？恩
+
+      this.$http.get(url, {}).then(function (res) {
+
+
+        res = res.data
+        console.log(res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          var obj = {}
+          obj.date = res.data[i].date
+          obj.tinfo = res.data[i].tinfo
+          obj.tnum = res.data[i].tnum
+          obj.tcanum = res.data[i].tcanum
+          obj.tavecalti = res.data[i].tavecalti
+          obj.tcl = res.data[i].tcl
+          obj.trate = res.data[i].trate
+          obj.tbura = res.data[i].tbura
+          obj.tthrate = res.data[i].tthrate
+          obj.tcaluser = res.data[i].tcaluser
+          obj.tcara = res.data[i].tcara
+          obj.tidleti = res.data[i].tidleti
+          obj.tsign = res.data[i].tsign
+          data[i] = obj
+
+        }
+        _this.tableData =  res.data
+      }).catch(function (error) {
+        console.log(error);
+      })
     },
     methods:{
       filterHandler(value, row,column) {
@@ -568,7 +549,7 @@
           min=3;max=5;
           return row.tnum>min && row.tnum<max
         }else{
-           min=6;max=9;
+          min=6;max=9;
           return row.tnum>min && row.tnum<max
         }
       },
@@ -701,9 +682,7 @@
 
 
 
-      filter:{
 
-      },
       computed:{
         tableData:function(){
           var search=this.search;
